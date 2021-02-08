@@ -1,0 +1,12 @@
+{
+  "type": "mysql",
+  "l_host": "localhost",
+  "l_port": 6000,
+  "host": "mysql",
+  "port": 3306,
+  "username": "root",
+  "password": "example",
+  "database": "book-catalog",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}

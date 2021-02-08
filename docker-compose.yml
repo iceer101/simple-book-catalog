@@ -1,0 +1,38 @@
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql
+    container_name: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./mysql-data:/var/lib/mysql
+    ports:
+      - 6000:3306
+
+  adminer:
+    image: adminer
+    container_name: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nodejs
+    restart: always
+    environment:
+      - NODE_ENV=production
+    ports:
+      - 5000:5000
+    volumes:
+      - ./src:/app/src
+    working_dir: /app
+    command: npm run start:dev
