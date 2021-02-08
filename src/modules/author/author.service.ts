@@ -10,7 +10,7 @@ export class AuthorService {
     constructor(@InjectRepository(Author) private authorRepository: Repository<Author>) {}
 
     /**
-     * Создание нового автора
+     * Получение автора по ID
      * */
     async getAuthor(id: number): Promise<Author> {
         return this.authorRepository.findOne(id);
